@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gemini via Antigravity"
+  short_description: "Gemini come agente in Codex via login Google"
+  default_prompt: "Usa $gemini-argon per consultare Gemini sul lavoro corrente tramite Antigravity CLI, con il modello richiesto o Argon predefinito."

@@ -1,0 +1,25 @@
+name: Offline tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Test transports and wrapper without network or credentials
+        run: python -m unittest discover -s skills/gemini-argon/scripts -p "test_*.py" -v
+      - name: Check Python syntax
+        run: python -m compileall -q skills/gemini-argon/scripts scripts
